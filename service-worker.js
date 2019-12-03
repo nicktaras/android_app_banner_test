@@ -4,3 +4,7 @@
   In the real world, you would add support for Offline or the ability to
   handle push messages.
 */
+
+const FILES_TO_CACHE = [
+  '/offline.html',
+];
