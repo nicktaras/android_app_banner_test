@@ -1,6 +1,13 @@
 {
   "name": "App Install Banner Sample",
   "short_name": "App Install Banner Sample",
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.google.samples.apps.iosched"
+    }
+  ],
   "icons": [
     {
       "src": "launcher-icon-0-75x.png",
