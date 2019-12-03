@@ -7,21 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="manifest.json">
     <script> 
-    window.addEventListener('load', function() {
-      var outputElement = document.getElementById('output');
-      navigator.serviceWorker.register('service-worker.js', { scope: './' })
-        .then(function(r) {
-          console.log('registered service worker');
-        })
-        .catch(function(whut) {
-          console.error('uh oh... ');
-          console.error(whut);
+      window.addEventListener('load', function() {
+        var outputElement = document.getElementById('output');
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('service-worker.js', {
+            scope: '.' // <--- THIS BIT IS REQUIRED
+          }).then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
         });
-       
-      window.addEventListener('beforeinstallprompt', function(e) {
-        outputElement.textContent = 'beforeinstallprompt Event fired';
-      });
+        window.addEventListener('beforeinstallprompt', function(e) {
+          outputElement.textContent = 'beforeinstallprompt Event fired';
+        });
+      }
     });
+      
+//     window.addEventListener('load', function() {
+//       var outputElement = document.getElementById('output');
+//       navigator.serviceWorker.register('service-worker.js', { scope: './' })
+//         .then(function(r) {
+//           console.log('registered service worker');
+//         })
+//         .catch(function(whut) {
+//           console.error('uh oh... ');
+//           console.error(whut);
+//         });
+       
+//       window.addEventListener('beforeinstallprompt', function(e) {
+//         outputElement.textContent = 'beforeinstallprompt Event fired';
+//       });
+//     });
     </script>
   </head>
   <body>
